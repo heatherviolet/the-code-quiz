@@ -16,47 +16,63 @@ var cButton = document.getElementById("c");
 var dButton = document.getElementById("d");
 
 // quiz questions and answers
-const questions = [{
+const questions = [
+    {
         question: "Commonly used data types do NOT include:",
-        options:
-        [1, "strings",
-        2, "booleans",
-        3, "alerts",
-        4, "numbers"],
-        answer: "alerts"},
+        answers: {
+        a: "strings",
+        b: "booleans",
+        c: "alerts",
+        d: "numbers",
+        },
+        correct: "c",
+    },
     {
         question: "The condition in an if / else statement is enclosed within ______.",
-        1: "quotes",
-        2: "curly brackets",
-        3: "parentheses",
-        4: "square backets",
-        answer: "parentheses"},   
+        answers: {
+        a: "quotes",
+        b: "curly brackets",
+        c: "parentheses",
+        d: "square backets",
+        },
+        correct: "c",
+    },   
     {
         question: "Arrays in Javascript can be used to store ______.",
-        1: "numbers and strings",
-        2: "other arrays",
-        3: "booleans",
-        4: "all of the above",
-        answer: "all of the above"},
+        answers: {
+        a: "numbers and strings",
+        b: "other arrays",
+        c: "booleans",
+        d: "all of the above",
+        },
+        correct: "d",
+    },
     {
         question: "Sting values must be enclosed within _____ when being assigned to variables.",
-        2: "curly brackets",
-        3: "quotes",
-        4: "parentheses",               
-        answer: "quotes"},
+        answers: {
+        a: "commas",
+        b: "curly brackets",
+        c: "quotes",
+        d: "parentheses",
+        },               
+        correct: "c",
+    },
     {
         question: "A very useful tool used during development and degugging for printing content to the debugger is:",
-        1: "JavaScript",
-        2: "terminal / bash",
-        3: "for loops",
-        4: "console log",
-        answer : "console log"},
+        answers: {
+        a: "JavaScript",
+        b: "terminal / bash",
+        c: "for loops",
+        d: "console log",
+        },
+        correct: "d",
+    },
 ];
 
-var currentQuestion = -1;
-var score = 0;
-var timeLeft = 0;
-var timer;
+// var currentQuestion = -1;
+// var score = 0;
+// var timeLeft = 0;
+// var timer;
 
 
 function startQuiz() {
@@ -82,9 +98,9 @@ function startQuiz() {
    // next();
 }
 
-function setNextQuestion() {
-    displayQuestion([currentQuestionIndex])
-}
+// function setNextQuestion() {
+//     displayQuestion([currentQuestionIndex])
+// }
 
 // function showQuestion() {
 //     questionElement.innerText = questions.question
