@@ -83,9 +83,20 @@ function setNextQuestion() {
     showQuestion(questions)
 }
 
-function showQuestion() {
-    questionElement.innerText = question.question
-}
+// function showQuestion() {
+//     questionElement.innerText = questions.question
+// }
+var displayQuestion = function(index) {
+    questionsEl.innerText = index.q
+    for (var i = 0; i <index.choices.length; i++) {
+        var answerbutton = document.createElement('button')
+            answerbutton.innerText = index.choices[i].choice
+            answerbutton.classList.add('btn')
+            answerbutton.classList.add('answerbtn')
+            answerbutton.addEventListener("click", answerCheck)
+            answerbuttonsEl.appendChild(answerbutton)
+            }
+        };
 
 
 function endQuiz() {
