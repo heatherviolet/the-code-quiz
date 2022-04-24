@@ -6,16 +6,20 @@ const questionsContainerElement = document.getElementById("questions-container")
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
 const startPageEl = document.getElementById("start-page");
-var highScoreButtonEl = document.getElementById("high-btn");
-var submitButtonEl = document.getElementById("submit-btn");
-var backButtonEl = document.getElementById("back-btn");
-var clearButtonEl = document.getElementById("clear-btn");
-var aButton = document.getElementById("a");
-var bButton = document.getElementById("b");
-var cButton = document.getElementById("c");
-var dButton = document.getElementById("d");
+const highScoreButtonEl = document.getElementById("high-btn");
+const submitButtonEl = document.getElementById("submit-btn");
+const backButtonEl = document.getElementById("back-btn");
+const clearButtonEl = document.getElementById("clear-btn");
+const aButton = document.getElementById("btnA");
+const bButton = document.getElementById("btnB");
+const cButton = document.getElementById("btnC");
+const dButton = document.getElementById("btnD");
 
 // quiz questions and answers
+let currentQuestion = 0;
+var score = 0;
+
+
 const questions = [
     {
         question: "Commonly used data types do NOT include:",
@@ -69,18 +73,23 @@ const questions = [
     },
 ];
 
-// var currentQuestion = -1;
+// var currentQuestion = 0; 
 // var score = 0;
 // var timeLeft = 0;
 // var timer;
+var index = 0;
 
-
+window.onload = function (){
 function startQuiz() {
+    currentQuestion = 0;
+
     console.log("Starting")
     // startButtonEl.style.visibility="hidden"
-    questionsContainerElement.classList.remove('hide')
     // currentQuestionIndex = 0
-    displayQuestion()
+    questionsContainerElement.classList.remove('hide')
+    
+    
+    setNextQuestion()
     
  // starts timer when start quiz is clicked
     //document.getElementById("timeLeft").innerHTML = timeLeft;
@@ -98,15 +107,22 @@ function startQuiz() {
    // next();
 }
 
-// function setNextQuestion() {
-//     displayQuestion([currentQuestionIndex])
-// }
+function setNextQuestion() {
+    var index = 0;
+    showQuestion([index])
+    var currentQuestion = questions[index];
+    questionsContainerElement.innerHTML = questions[index].question;
+    aButton.innerHTML = questions[index].answers[1];
+    bButton.innerHTML = currentQuestion.answers[1];
+    cButton.innerHTML = currentQuestion.answers[2];
+    dButton.innerHTML = currentQuestion.answers[3];
+    showQuestion(questions)
+}
 
-// function showQuestion() {
-//     questionElement.innerText = questions.question
-// }
-function displayQuestion(question) {
-    questionElement.innerText = question.question
+function showQuestion(question) {
+    let questionElement = document.getElementById('question');
+    questionElement.textContent = question.title;
+    // questionElement.innerText = question.question
     // question.answers.forEach(answer => {
     //     const button = document.createElement("button")
     //     button.innerText = answer.text
@@ -148,4 +164,4 @@ function saveQuiz () {
     localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
 }
 // when start quiz is clicked starts quiz
-startButtonEl.addEventListener('click', startQuiz);
+startButtonEl.addEventListener('click', startQuiz);}
