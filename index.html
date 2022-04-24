@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Coding Quiz</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+   <header>
+       <button id="high-scores-btn">View High Scores</button>
+       <h4 class="timer">Time: <span id="timer"></span></h4>
+   </header>
+
+<main>
+    <div id="start-element" class="show">
+    <div class="start element">
+    <h1>Code Quiz Challenge</h1>
+    <p>Try to answer all the code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+    <div id="start-btn">  
+        <button id="submit" name="start-quiz">Start Quiz</button>
+    <button class="startHighScore" id="view-score">View high scores</button>
+</div>
+</div>
+
+    <div id="questions-element" class="hide">
+        <div class="element questions">
+            <div id="question"></div>
+    <div id="answer-buttons" class="btns">    
+    </div>
+    </div>
+
+    <div id="initials-element" class="hide">
+        <div class="initials element">
+            <p>Enter Initials:
+    <input type="text" size= "15" name="initials" class="initials"/>
+    <button id="scoreBtn">Submit</button></p>
+</div>
+</div>
+
+<div id="hs-element" class="hide">
+    <div class="hs element">
+      <h1 class="high-score">High Scores</h1>
+      <ol id="high-score-list" class="score-list"></ol>
+  <div>
+    <div id="end">
+        <button id="goBack" class="replay">Go Back</button>
+        <button id="clearHighScores" class="clearScore">Clear High Scores</button>
+    </div>
+</div>
+</main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
