@@ -3,8 +3,9 @@ var Timer = document.getElementById("timer");
 // button variables
 const startButtonEl = document.getElementById("start-btn");
 const questionsContainerElement = document.getElementById("questions-container");
-const questionElement = document.getElementById("questions");
-const answerButtonsElement = document.getElementById("answer");
+const questionElement = document.getElementById("question");
+const answerButtonsElement = document.getElementById("answer-buttons");
+const startPageEl = document.getElementById("start-page");
 var highScoreButtonEl = document.getElementById("high-btn");
 var submitButtonEl = document.getElementById("submit-btn");
 var backButtonEl = document.getElementById("back-btn");
@@ -43,7 +44,7 @@ const questions = [{
         3: "quotes",
         4: "parentheses",               
         answer: "quotes"},
-    question_5 = {
+    {
         question: "A very useful tool used during development and degugging for printing content to the debugger is:",
         1: "JavaScript",
         2: "terminal / bash",
@@ -59,9 +60,11 @@ var timer;
 
 
 function startQuiz() {
-    startButtonEl.style.visibility="hidden"
+    console.log("Starting")
+    // startButtonEl.style.visibility="hidden"
     questionsContainerElement.classList.remove('hide')
-    setNextQuestion()
+    // currentQuestionIndex = 0
+    displayQuestion()
     
  // starts timer when start quiz is clicked
     //document.getElementById("timeLeft").innerHTML = timeLeft;
@@ -80,23 +83,34 @@ function startQuiz() {
 }
 
 function setNextQuestion() {
-    showQuestion(questions)
+    displayQuestion([currentQuestionIndex])
 }
 
 // function showQuestion() {
 //     questionElement.innerText = questions.question
 // }
-var displayQuestion = function(index) {
-    questionsEl.innerText = index.q
-    for (var i = 0; i <index.choices.length; i++) {
-        var answerbutton = document.createElement('button')
-            answerbutton.innerText = index.choices[i].choice
-            answerbutton.classList.add('btn')
-            answerbutton.classList.add('answerbtn')
-            answerbutton.addEventListener("click", answerCheck)
-            answerbuttonsEl.appendChild(answerbutton)
-            }
-        };
+function displayQuestion(question) {
+    questionElement.innerText = question.question
+    // question.answers.forEach(answer => {
+    //     const button = document.createElement("button")
+    //     button.innerText = answer.text
+    //     button.classList.add('btn')
+    //     if (answer.correct) {
+    //         button.dataset.correct = answer.correct
+    //     }
+    //     button.addEventListener("click",selectAnswer)
+    //     answerButtonsElement.appendChild(button)
+    // })
+}
+    // for (var i = 0; i <index.choices.length; i++) {
+    //     var answerbutton = document.createElement('button')
+    //         answerbutton.innerText = index.choices[i].choice
+    //         answerbutton.classList.add('btn')
+    //         answerbutton.classList.add('answerbtn')
+    //         answerbutton.addEventListener("click", answerCheck)
+    //         answerbuttonsEl.appendChild(answerbutton)
+    //         }
+    //     };
 
 
 function endQuiz() {

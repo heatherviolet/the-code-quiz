@@ -10,23 +10,26 @@
 </head>
 
 <body>
-    <div class="start-page">
+    <div class="container">
+    <div class="start-page" class="hide">
         <h2>Coding Quiz Challenege</h2>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
             will penalize your score/time by ten seconds!</p>
-        <button id="start-btn" class="btn">Start Quiz</button>
-        <button id="high-btn" class="btn">View high scores</button>
+        <button id="start-btn" class="start-btn btn">Start Quiz</button>
+ 
     </div>
+    
     <div id="timer">Time: <span id="timeLeft"></span></div>
     <div id="questions-container" class="hide">
+        <div id="question">Question</div>
         <div id="answer-buttons" class="btn-grid"></div>
-        <button id="btn" class="btn">A</button>
-        <button id="btn" class="btn">B</button>
-        <button id="btn" class="btn">C</button>
-        <button id="btn" class="btn">D</button>
-        <div id="answer"></div>
+        <button id="btn" class="answerbtn">A</button>
+        <button id="btn" class="answerbtn">B</button>
+        <button id="btn" class="answerbtn">C</button>
+        <button id="btn" class="answerbtn">D</button>
     </div>
-
+</div>
+    <button id="high-btn" class="start-btn btn">View high scores</button>
     <div id="final-score" class="hide">
         <h2>All done!</h2>
         <div id="final score"></div>
