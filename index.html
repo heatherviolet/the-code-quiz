@@ -8,7 +8,20 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Code Quiz</title>
 </head>
+<button id="high-btn" class="high-btn btn">View high scores</button>
+<div id="final-score" class="hide">
+    <h2>All done!</h2>
+    <div id="final score"></div>
+    <p>Enter initials</p>
+    <input type="text" />
+    <button id="submit-btn" class="btn">Submit</button>
+</div>
 
+<div id="high-scores" class="hide">
+    <h2>High scores</h2>
+    <button id="back-btn" class="btn">Go back</button>
+    <button id="clear-btn" class="btn">Clear high scores</button>
+</div>
 <body>
     <div id="timer">Time: <span id="timeLeft"></span>
     <div class="container">
@@ -21,30 +34,16 @@
         <button id="btnD" class="answerbtn">D</button>
     </div>
 </div>
-    <div class="start-page" class="hide">
+
+    <div class="start-page" class="show">
         <h2>Coding Quiz Challenege</h2>
         <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers
             will penalize your score/time by ten seconds!</p>
         <button id="start-btn" class="start-btn btn">Start Quiz</button>
  
     </div>
-    
-    
-    <button id="high-btn" class="start-btn btn">View high scores</button>
-    <div id="final-score" class="hide">
-        <h2>All done!</h2>
-        <div id="final score"></div>
-        <p>Enter initials</p>
-        <input type="text" />
-        <button id="submit-btn" class="btn">Submit</button>
-    </div>
-
-    <div id="high-scores" class="hide">
-        <h2>High scores</h2>
-        <button id="back-btn" class="btn">Go back</button>
-        <button id="clear-btn" class="btn">Clear high scores</button>
-    </div>
-    <script src="./assets/javascript/script.js"></script>
+</div>
+    <script src="./assets/javascript/script.js">
+</script>
 </body>
-
 </html>

@@ -23,52 +23,52 @@ var score = 0;
 const questions = [
     {
         question: "Commonly used data types do NOT include:",
-        answers: {
-        a: "strings",
-        b: "booleans",
-        c: "alerts",
-        d: "numbers",
-        },
+        answers: [
+        "a: strings",
+        "b: booleans",
+        "c: alerts",
+        "d: numbers",
+        ],
         correct: "c",
     },
     {
         question: "The condition in an if / else statement is enclosed within ______.",
-        answers: {
-        a: "quotes",
-        b: "curly brackets",
-        c: "parentheses",
-        d: "square backets",
-        },
+        answers: [
+        "a: quotes",
+        "b: curly brackets",
+        "c: parentheses",
+        "d: square backets",
+        ],
         correct: "c",
     },   
     {
         question: "Arrays in Javascript can be used to store ______.",
-        answers: {
-        a: "numbers and strings",
-        b: "other arrays",
-        c: "booleans",
-        d: "all of the above",
-        },
+        answers: [
+        "a: numbers and strings",
+        "b: other arrays",
+        "c: booleans",
+        "d: all of the above",
+        ],
         correct: "d",
     },
     {
         question: "Sting values must be enclosed within _____ when being assigned to variables.",
-        answers: {
-        a: "commas",
-        b: "curly brackets",
-        c: "quotes",
-        d: "parentheses",
-        },               
+        answers: [
+        "a: commas",
+        "b: curly brackets",
+        "c: quotes",
+        "d: parentheses",
+        ],               
         correct: "c",
     },
     {
         question: "A very useful tool used during development and degugging for printing content to the debugger is:",
-        answers: {
-        a: "JavaScript",
-        b: "terminal / bash",
-        c: "for loops",
-        d: "console log",
-        },
+        answers: [
+        "a: JavaScript",
+        "b: terminal / bash",
+        "c: for loops",
+        "d: console log",
+        ],
         correct: "d",
     },
 ];
@@ -79,15 +79,16 @@ const questions = [
 // var timer;
 var index = 0;
 
-window.onload = function (){
-function startQuiz() {
-    currentQuestion = 0;
 
+function startQuiz() {
+    currentQuestion = -1;
+    
+    
     console.log("Starting")
     // startButtonEl.style.visibility="hidden"
     // currentQuestionIndex = 0
     questionsContainerElement.classList.remove('hide')
-    
+    // startPageEl.classList.remove('show');
     
     setNextQuestion()
     
@@ -108,41 +109,51 @@ function startQuiz() {
 }
 
 function setNextQuestion() {
+    resetState();
     var index = 0;
-    showQuestion([index])
+    showQuestion(questions[index])
     var currentQuestion = questions[index];
     questionsContainerElement.innerHTML = questions[index].question;
-    aButton.innerHTML = questions[index].answers[1];
+    aButton.innerHTML = questions[index].answers[0];
     bButton.innerHTML = currentQuestion.answers[1];
     cButton.innerHTML = currentQuestion.answers[2];
     dButton.innerHTML = currentQuestion.answers[3];
-    showQuestion(questions)
+    // showQuestion(questions)
 }
 
 function showQuestion(question) {
+    questionArray = [];
+    console.log(question)
     let questionElement = document.getElementById('question');
-    questionElement.textContent = question.title;
-    // questionElement.innerText = question.question
-    // question.answers.forEach(answer => {
-    //     const button = document.createElement("button")
-    //     button.innerText = answer.text
-    //     button.classList.add('btn')
-    //     if (answer.correct) {
-    //         button.dataset.correct = answer.correct
-    //     }
-    //     button.addEventListener("click",selectAnswer)
-    //     answerButtonsElement.appendChild(button)
-    // })
-}
-    // for (var i = 0; i <index.choices.length; i++) {
-    //     var answerbutton = document.createElement('button')
-    //         answerbutton.innerText = index.choices[i].choice
-    //         answerbutton.classList.add('btn')
-    //         answerbutton.classList.add('answerbtn')
-    //         answerbutton.addEventListener("click", answerCheck)
-    //         answerbuttonsEl.appendChild(answerbutton)
-    //         }
-    //     };
+    // questionElement.textContent = questions.title;
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement("button")
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener("click",selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+// }
+    for (var i = 0; i <index.questionArray.length; i++) {
+        var answerbutton = document.createElement('button')
+            answerbutton.innerText = index.questions[i].answer
+            answerbutton.classList.add('btn')
+            answerbutton.classList.add('answerbtn')
+            answerbutton.addEventListener("click", answerCheck)
+            answerbuttonsEl.appendChild(answerbutton)
+            }
+        };
+
+function resetState() {
+    submitButtonEl.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+}    
 
 
 function endQuiz() {
@@ -164,4 +175,4 @@ function saveQuiz () {
     localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
 }
 // when start quiz is clicked starts quiz
-startButtonEl.addEventListener('click', startQuiz);}
+startButtonEl.addEventListener('click', startQuiz);
