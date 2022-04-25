@@ -1,4 +1,4 @@
-var Timer = document.getElementById("timer");
+var timer = document.getElementById("timer");
 
 // button variables
 const startButtonEl = document.getElementById("start-btn");
@@ -18,7 +18,7 @@ const dButton = document.getElementById("btnD");
 // quiz questions and answers
 let currentQuestion = 0;
 var score = 0;
-
+var array = [];
 
 const questions = [
     {
@@ -85,7 +85,7 @@ function startQuiz() {
     
     
     console.log("Starting")
-    // startButtonEl.style.visibility="hidden"
+    // startPageEl.style.display="none";
     // currentQuestionIndex = 0
     questionsContainerElement.classList.remove('hide')
     // startPageEl.classList.remove('show');
@@ -118,11 +118,9 @@ function setNextQuestion() {
     bButton.innerHTML = currentQuestion.answers[1];
     cButton.innerHTML = currentQuestion.answers[2];
     dButton.innerHTML = currentQuestion.answers[3];
-    // showQuestion(questions)
 }
 
 function showQuestion(question) {
-    questionArray = [];
     console.log(question)
     let questionElement = document.getElementById('question');
     // questionElement.textContent = questions.title;
@@ -138,13 +136,13 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
     })
 // }
-    for (var i = 0; i <index.questionArray.length; i++) {
+    for (var i = 0; i <index.questions.length; i++) {
         var answerbutton = document.createElement('button')
-            answerbutton.innerText = index.questions[i].answer
+            answerbutton.innerText = index.question[i].answer
             answerbutton.classList.add('btn')
             answerbutton.classList.add('answerbtn')
-            answerbutton.addEventListener("click", answerCheck)
-            answerbuttonsEl.appendChild(answerbutton)
+            answerbutton.addEventListener("click", correct)
+            answerButtonsElement.appendChild(answerbutton)
             }
         };
 

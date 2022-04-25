@@ -2,7 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 600px;
+    width: 800px;
     padding-top: 5px;
     margin: auto;
 }
@@ -70,5 +70,5 @@ body {
 }
 
 .timer {
-    margin-left: 1px; 
+    display: flex;
 }
