@@ -17,9 +17,10 @@ const cButton = document.getElementById("btnC");
 const dButton = document.getElementById("btnD");
 
 // quiz questions and answers
-let currentQuestionIndex = 0;
+let currentQuestionIndex = +1;
 var score = 0;
 var array = [];
+
 
 const questions = [
     {
@@ -82,15 +83,8 @@ let index = 0;
 startPageEl.classList.remove('hide')
 
 function startQuiz() {
-    currentQuestion = -1;
-    
     startPageEl.classList.add('hide')
-    console.log("Starting")
-    // startPageEl.style.display="none";
-    // currentQuestionIndex = 0
     questionsContainerElement.classList.remove('hide')
-    // startPageEl.classList.add('hide');
-    
     setNextQuestion()
     
  // starts timer when start quiz is clicked
@@ -110,7 +104,7 @@ function startQuiz() {
 }
 var lastQuestionIndex = questions.length -1;
 function setNextQuestion() {
-    // resetState();
+    resetState();
     
     showQuestion(questions[index])
     // var currentQuestion = questions[index];
@@ -125,7 +119,6 @@ function showQuestion(question) {
     startButtonEl.classList.add('hide')
     console.log(question)
     let questionElement = document.getElementById('question');
-    // questionElement.textContent = questions.title;
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement("button")
@@ -136,17 +129,18 @@ function showQuestion(question) {
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
-        button.addEventListener("click",selectAnswer)
+        button.addEventListener("click", selectAnswer)
         answerButtonsElement.appendChild(button)
     })
         };
 
-// function resetState() {
-//     submitButtonEl.classList.add('hide')
-//     while (answerButtonsElement.firstChild) {
-//         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-//     }
-// }    
+function resetState() {
+    clearStatusClass(document.body)
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+    }
+}    
 
 
 function endQuiz() {
