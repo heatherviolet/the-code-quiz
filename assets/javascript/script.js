@@ -2,6 +2,7 @@ var timer = document.getElementById("timer");
 
 // button variables
 const startButtonEl = document.getElementById("start-btn");
+const nextButton = document.getElementById("next-btn");
 const questionsContainerElement = document.getElementById("questions-container");
 const questionElement = document.getElementById("question");
 const answerButtonsElement = document.getElementById("answer-buttons");
@@ -16,7 +17,7 @@ const cButton = document.getElementById("btnC");
 const dButton = document.getElementById("btnD");
 
 // quiz questions and answers
-let currentQuestion = 0;
+let currentQuestionIndex = 0;
 var score = 0;
 var array = [];
 
@@ -77,18 +78,18 @@ const questions = [
 // var score = 0;
 // var timeLeft = 0;
 // var timer;
-var index = 0;
-
+let index = 0;
+startPageEl.classList.remove('hide')
 
 function startQuiz() {
     currentQuestion = -1;
     
-    
+    startPageEl.classList.add('hide')
     console.log("Starting")
     // startPageEl.style.display="none";
     // currentQuestionIndex = 0
     questionsContainerElement.classList.remove('hide')
-    // startPageEl.classList.remove('show');
+    // startPageEl.classList.add('hide');
     
     setNextQuestion()
     
@@ -107,51 +108,45 @@ function startQuiz() {
     
    // next();
 }
-
+var lastQuestionIndex = questions.length -1;
 function setNextQuestion() {
-    resetState();
-    var index = 0;
+    // resetState();
+    
     showQuestion(questions[index])
-    var currentQuestion = questions[index];
-    questionsContainerElement.innerHTML = questions[index].question;
-    aButton.innerHTML = questions[index].answers[0];
-    bButton.innerHTML = currentQuestion.answers[1];
-    cButton.innerHTML = currentQuestion.answers[2];
-    dButton.innerHTML = currentQuestion.answers[3];
+    // var currentQuestion = questions[index];
+    // questionsContainerElement.innerHTML = questions[index].question;
+    // aButton.innerHTML = questions[index].answers[0];
+    // bButton.innerHTML = currentQuestion.answers[1];
+    // cButton.innerHTML = currentQuestion.answers[2];
+    // dButton.innerHTML = currentQuestion.answers[3];
 }
 
 function showQuestion(question) {
+    startButtonEl.classList.add('hide')
     console.log(question)
     let questionElement = document.getElementById('question');
     // questionElement.textContent = questions.title;
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement("button")
-        button.innerText = answer.text
+        button.innerText = answer
         button.classList.add('btn')
+        button.classList.add('answerbtn')
+        console.log(button, answerButtonsElement)
         if (answer.correct) {
             button.dataset.correct = answer.correct
         }
         button.addEventListener("click",selectAnswer)
         answerButtonsElement.appendChild(button)
     })
-// }
-    for (var i = 0; i <index.questions.length; i++) {
-        var answerbutton = document.createElement('button')
-            answerbutton.innerText = index.question[i].answer
-            answerbutton.classList.add('btn')
-            answerbutton.classList.add('answerbtn')
-            answerbutton.addEventListener("click", correct)
-            answerButtonsElement.appendChild(answerbutton)
-            }
         };
 
-function resetState() {
-    submitButtonEl.classList.add('hide')
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-    }
-}    
+// function resetState() {
+//     submitButtonEl.classList.add('hide')
+//     while (answerButtonsElement.firstChild) {
+//         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+//     }
+// }    
 
 
 function endQuiz() {
@@ -164,8 +159,33 @@ function nextQuestion() {
    
 }
 
-function selectAnswer() {
-    
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+    if (questions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide')
+    } else {
+        startButtonEl.innerText = 'Restart'
+        startButtonEl.classList.remove('hide')
+    }
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
 }
 
 // saves to local storage
@@ -174,3 +194,7 @@ function saveQuiz () {
 }
 // when start quiz is clicked starts quiz
 startButtonEl.addEventListener('click', startQuiz);
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+});
